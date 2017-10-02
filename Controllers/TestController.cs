@@ -4,5 +4,5 @@ using Microsoft.AspNetCore.Mvc;
 public class TestController : ControllerBase
 {
     [HttpGet("")]
-    public IActionResult Get() => Ok("This is a controller");
+    public IActionResult Get() => Ok("This is an updated controller");
 }
