@@ -33,7 +33,8 @@ namespace core2azure
 
             app.Run(async (context) =>
             {
-                await context.Response.WriteAsync("Hello World!");
+                context.Response.StatusCode = 404;
+                await context.Response.WriteAsync("Resource not found!");
             });
         }
     }
