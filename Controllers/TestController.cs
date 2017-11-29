@@ -28,4 +28,11 @@ public class TestController : ControllerBase
     {
         return Ok("Config is: " + _configuration.GetValue("a-config", "defaultValue"));
     }
+
+    [HttpGet("override")]
+    public IActionResult GetOverrided()
+    {
+        return Ok("Config is: " + _configuration.GetValue("overridable", "defaultValue"));
+    }
+
 }
