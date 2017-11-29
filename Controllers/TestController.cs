@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 
@@ -17,22 +18,14 @@ public class TestController : ControllerBase
     [HttpGet("{value}")]
     public IActionResult GetValue(string value) => Ok($"You sent {value}");
 
-    [HttpGet("secret")]
-    public IActionResult GetSecret()
+    [HttpGet("config/{key}")]
+    public IActionResult GetConfig(string key)
     {
-        return Ok("Secret is: " + _configuration.GetValue("a-secret", "defaultValue"));
-    }
+        if (key == "all")
+        {
+            return Ok(_configuration.AsEnumerable());
 
-    [HttpGet("config")]
-    public IActionResult GetConfig()
-    {
-        return Ok("Config is: " + _configuration.GetValue("a-config", "defaultValue"));
+        }
+        return Ok("Config is: " + _configuration.GetValue(key, "defaultValue"));
     }
-
-    [HttpGet("override")]
-    public IActionResult GetOverrided()
-    {
-        return Ok("Config is: " + _configuration.GetValue("overridable", "defaultValue"));
-    }
-
 }
